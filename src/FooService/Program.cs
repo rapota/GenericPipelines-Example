@@ -1,6 +1,9 @@
 using FooService;
+using FooService.Handlers;
 
 var builder = WebApplication.CreateSlimBuilder(args);
+
+builder.Services.AddHandlersModule();
 
 builder.Services.ConfigureHttpJsonOptions(options =>
 {

@@ -22,9 +22,9 @@ internal static class RestEndpoints
     public static async Task<Results<
         NotFound,
         Ok<Foo>
-    >> GetByIdAsync(int id)
+    >> GetByIdAsync(IGetByIdQueryHandler handler, int id, CancellationToken ct)
     {
-        Foo? foo = SampleTodos.FirstOrDefault(a => a.Id == id);
+        Foo? foo = await handler.HandleAsync(new GetByIdQuery(id), ct);
         if (foo == null)
         {
             return TypedResults.NotFound();

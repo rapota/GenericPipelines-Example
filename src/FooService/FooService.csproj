@@ -12,11 +12,4 @@
     <ProjectReference Include="..\FooService.Handlers\FooService.Handlers.csproj" />
   </ItemGroup>
 
-	<!--<PropertyGroup>
-		--><!-- Persist the source generator (and other) files to disk --><!--
-		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-		--><!-- Write the output to --><!--
-		<CompilerGeneratedFilesOutputPath>..\Generated</CompilerGeneratedFilesOutputPath>
-	</PropertyGroup>-->
-
 </Project>

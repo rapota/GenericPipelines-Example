@@ -1,0 +1,11 @@
+@FooService_HostAddress = http://localhost:5053
+
+GET {{FooService_HostAddress}}/foos/
+Accept: application/json
+
+###
+
+GET {{FooService_HostAddress}}/foos/1
+Accept: application/json
+
+###

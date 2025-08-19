@@ -16,5 +16,6 @@ var todosApi = app.MapGroup("/foos");
 
 todosApi.MapGet("/", RestEndpoints.GetAllAsync);
 todosApi.MapGet("/{id}", RestEndpoints.GetByIdAsync);
+todosApi.MapDelete("/{id}", RestEndpoints.DeleteAsync);
 
 app.Run();

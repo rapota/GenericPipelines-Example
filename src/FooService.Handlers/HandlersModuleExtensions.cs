@@ -1,4 +1,5 @@
-﻿using FooService.Handlers.SampleQueries.Decorating;
+﻿using FooService.Handlers.SampleCommands.Decorating;
+using FooService.Handlers.SampleQueries.Decorating;
 using GenericPipelines.Generated;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,12 +18,15 @@ public static class HandlersModuleExtensions
 
     private static IServiceCollection AddMiddlewares(this IServiceCollection services) =>
         services
+            .AddTransient(typeof(CommandLoggingMiddleware<>))
+
             .AddTransient(typeof(MetricLoggingMiddleware<,>))
             .AddTransient(typeof(ExceptionLoggingMiddleware<,>))
         ;
 
     private static IServiceCollection AddPipelines(this IServiceCollection services) =>
         services
+            .AddTransient(typeof(SampleCommandPipeline<>))
             .AddTransient(typeof(SampleQueryPipeline<,>))
         ;
 }

@@ -9,3 +9,8 @@ GET {{FooService_HostAddress}}/foos/1
 Accept: application/json
 
 ###
+
+DELETE {{FooService_HostAddress}}/foos/1
+Accept: application/json
+
+###

@@ -1,4 +1,5 @@
 ﻿using FooService.Handlers;
+using FooService.Handlers.SampleCommands;
 using FooService.Handlers.SampleQueries;
 using Microsoft.AspNetCore.Http.HttpResults;
 
@@ -23,5 +24,10 @@ internal static class RestEndpoints
         }
 
         return TypedResults.Ok(foo);
+    }
+
+    public static async Task DeleteAsync(IDeleteFooCommandHandler handler, int id, CancellationToken ct)
+    {
+        await handler.HandleAsync(new DeleteFooCommand(id), ct);
     }
 }

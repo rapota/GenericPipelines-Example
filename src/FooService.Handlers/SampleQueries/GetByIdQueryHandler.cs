@@ -1,14 +1,9 @@
-﻿using FooService.Handlers.Pipelines;
-using GenericPipelines;
+﻿using FooService.Handlers.SampleQueries.Decorating;
 using GenericPipelines.Middlewares;
 
-namespace FooService.Handlers;
+namespace FooService.Handlers.SampleQueries;
 
-public record GetByIdQuery(int Id);
-
-public interface IGetByIdQueryHandler: IRequestHandler<GetByIdQuery, Foo?>;
-
-[PipelineDecorated<LoggingPipeline<GetByIdQuery, Foo>>]
+[PipelineDecorated<SampleQueryPipeline<GetByIdQuery, Foo>>]
 internal sealed class GetByIdQueryHandler : IGetByIdQueryHandler
 {
     private static readonly Foo[] SampleTodos =

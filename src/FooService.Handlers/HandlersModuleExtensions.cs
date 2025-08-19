@@ -1,5 +1,4 @@
-﻿using FooService.Handlers.Middleware;
-using FooService.Handlers.Pipelines;
+﻿using FooService.Handlers.SampleQueries.Decorating;
 using GenericPipelines.Generated;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -7,16 +6,23 @@ namespace FooService.Handlers;
 
 public static class HandlersModuleExtensions
 {
-    public static IServiceCollection AddHandlersModule(this IServiceCollection services)
-    {
+    public static IServiceCollection AddHandlersModule(this IServiceCollection services) =>
         services
-            .AddTransient(typeof(LoggingMiddleware<,>))
-            .AddTransient(typeof(LoggingPipeline<,>))
+            .AddMiddlewares()
+
+            .AddPipelines()
+
+            // This one is generated
+            .RegisterDecoratedRequestHandlers();
+
+    private static IServiceCollection AddMiddlewares(this IServiceCollection services) =>
+        services
+            .AddTransient(typeof(MetricLoggingMiddleware<,>))
+            .AddTransient(typeof(ExceptionLoggingMiddleware<,>))
         ;
 
-        // This one is generated
-        services.RegisterDecoratedRequestHandlers();
-
-        return services;
-    }
+    private static IServiceCollection AddPipelines(this IServiceCollection services) =>
+        services
+            .AddTransient(typeof(SampleQueryPipeline<,>))
+        ;
 }

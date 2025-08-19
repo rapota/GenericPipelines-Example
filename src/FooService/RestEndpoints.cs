@@ -1,22 +1,14 @@
 ﻿using FooService.Handlers;
+using FooService.Handlers.SampleQueries;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace FooService;
 
 internal static class RestEndpoints
 {
-    private static readonly Foo[] SampleTodos =
-    [
-        new(1, "Walk the dog"),
-        new(2, "Do the dishes"),
-        new(3, "Do the laundry"),
-        new(4, "Clean the bathroom"),
-        new(5, "Clean the car")
-    ];
-
-    public static Task<Foo[]> GetAllAsync()
+    public static async Task<Foo[]> GetAllAsync(IGetAllQueryHandler handler, CancellationToken ct)
     {
-        return Task.FromResult(SampleTodos);
+        return await handler.HandleAsync(new GetAllQuery(), ct);
     }
 
     public static async Task<Results<

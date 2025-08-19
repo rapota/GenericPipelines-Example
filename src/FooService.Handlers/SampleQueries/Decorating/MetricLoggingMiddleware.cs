@@ -2,9 +2,9 @@
 using GenericPipelines.Middlewares;
 using Microsoft.Extensions.Logging;
 
-namespace FooService.Handlers.Middleware;
+namespace FooService.Handlers.SampleQueries.Decorating;
 
-internal sealed class LoggingMiddleware<TRequest, TResponse>(ILogger<LoggingMiddleware<TRequest, TResponse>> logger)
+internal sealed class MetricLoggingMiddleware<TRequest, TResponse>(ILogger<MetricLoggingMiddleware<TRequest, TResponse>> logger)
     : IMiddleware<TRequest, TResponse>
 {
     public async Task<TResponse> InvokeAsync(TRequest request, NextMiddlewareDelegate<TRequest, TResponse> next, CancellationToken ct)

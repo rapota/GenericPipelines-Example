@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="FooService.Handlers/FooService.Handlers.csproj" />
+  <Project Path="FooService/FooService.csproj" />
+</Solution>
